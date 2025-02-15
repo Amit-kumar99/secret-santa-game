@@ -7,6 +7,7 @@ const app = express();
 
 const port = process.env.PORT || 8000;
 
+// cors middleware to allow cross origin requests from frontend
 app.use(
   cors({
     // origin: process.env.CORS_ORIGIN,
