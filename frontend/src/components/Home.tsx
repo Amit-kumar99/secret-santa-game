@@ -80,33 +80,33 @@ const Home = () => {
 
   return (
     <div className="pt-5 flex-column w-8/12 items-center mx-auto min-h-[calc(100vh-22vh)]">
-      <h1 className="text-4xl text-center font-bold mb-4 ">
-        Welcome to Secret Santa
+      <h1 className="text-green-800 text-4xl text-center font-bold mb-4 ">
+        Welcome to Secret Santa Game
       </h1>
 
       <div className="space-y-2">
         <p className="text-lg">
-          Ho ho ho! Welcome to our Secret Santa gift exchange platform. Here's
+          <b>Ho ho ho!</b> Welcome to our Secret Santa gift exchange platform. Here's
           where the magic of anonymous gift-giving comes to life!
         </p>
 
-        <p>Here's an example of how both your csv files should look like:</p>
+        <p className="font-semibold text-green-800">Here's an example of how both your csv files should look like:</p>
         <div className="flex justify-between">
           <img
             className="rounded-md"
             src={csv_img_1}
-            width="315px"
+            width="39%"
             alt="csv example img 1"
           />
           <img
             className="rounded-md"
             src={csv_img_2}
-            width="515px"
+            width="60%"
             alt="csv example img 2"
           />
         </div>
 
-        <p className="text-center bg-blue-400 font-semibold rounded-md p-2 text-white">
+        <p className="text-center border-2 border-green-800 font-semibold rounded-md p-2">
           Using the below buttons, provide the below 2 csv files & find your
           secret santa🎅. Your csv file will be downloaded with the secret santa
           data for the current year.
@@ -157,7 +157,7 @@ const Home = () => {
 
       <div>
         <button
-          className="mb-5 w-full cursor-pointer bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg"
+          className="mb-5 w-full cursor-pointer bg-green-800 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg"
           onClick={findSecretSanta}
         >
           Find Secret Santa
