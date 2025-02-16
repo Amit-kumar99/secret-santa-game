@@ -5,13 +5,12 @@ import healthcheckRoutes from "./routes/healthcheck.routes.js";
 
 const app = express();
 
-const port = process.env.PORT || 8000;
+const port = 8000;
 
 // cors middleware to allow cross origin requests from frontend
 app.use(
   cors({
-    // origin: process.env.CORS_ORIGIN,
-    origin: true,
+    origin:`http://localhost:5173`,
   })
 );
 
