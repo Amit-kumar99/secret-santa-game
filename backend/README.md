@@ -1,6 +1,14 @@
-# This backend has 2 Api's:
+# Tech Stack
+- Nodejs
+- Expressjs
 
-## 1. assignSecretSanta Api
+## Middlewares
+- multer
+- cors
+
+# The backend has 2 Api's:
+
+## 1. api/v1/files/findSecretSanta Api
 
 The `assignSecretSantaForCurrentYear` function is an Express.js controller responsible for assigning Secret Santa pairs for the current year based on employee lists. It processes uploaded CSV files containing employee data, determines pairings while avoiding previous year’s assignments, and returns the final Secret Santa list as a downloadable CSV file to the frontend.
 
@@ -8,7 +16,7 @@ The `assignSecretSantaForCurrentYear` function is an Express.js controller respo
 
 Method: `POST`
 
-Endpoint: `/assign-secret-santa`
+Endpoint: `http://localhost:8000/api/v1/files/findSecretSanta`
 
 ### Flow
 
@@ -66,7 +74,7 @@ Ensure that `multer` middleware is correctly configured to handle file uploads b
 
 The `assignSecretSanta` function automatically deletes temporary CSV files after the response is sent.
 
-## 2. healthcheck Api
+## 2. api/v1/health/checkHealth Api
 
 ### Function Overview
 
@@ -76,7 +84,7 @@ The `healthcheck` function is a simple Express.js controller that provides a hea
 
 Method: `GET`
 
-Endpoint: `/healthcheck`
+Endpoint: `http://localhost:8000/api/v1/health/checkHealth`
 
 ### Response
 
