@@ -3,12 +3,12 @@ import csv_img_1 from "../assets/csv_img1.png";
 import csv_img_2 from "../assets/csv_img2.png";
 
 const Home = () => {
-  const [currentYearEmployeesfile, setCurrentYearEmployeesfile] =
-    useState<File>();
+  const [currentYearEmployeesfile, setCurrentYearEmployeesfile] = useState<
+    File | undefined
+  >();
   const [previousYearSecretSantafile, setPreviousYearSecretSantafile] =
-    useState<File>();
+    useState<File | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
 
   const handleCurrentYearEmployeesfile = (e) => {
     setCurrentYearEmployeesfile(e.target.files[0]);
@@ -45,10 +45,10 @@ const Home = () => {
           }
         );
 
-        // if (!response.ok) {
-        //   setIsLoading(false);
-        //   throw new Error("Failed to fetch the file");
-        // }
+        if (!response.ok) {
+          setIsLoading(false);
+          throw new Error("Failed to fetch the file");
+        }
 
         console.log(response);
 
@@ -67,7 +67,9 @@ const Home = () => {
         // Clean up the URL object after download starts
         window.URL.revokeObjectURL(url);
         setIsLoading(false);
-        setMessage("File downloaded successfully");
+        alert("File downloaded successfully");
+        setCurrentYearEmployeesfile();
+        setPreviousYearSecretSantafile();
       } catch (error) {
         console.error("Error downloading file:", error);
       }
@@ -87,22 +89,35 @@ const Home = () => {
           Ho ho ho! Welcome to our Secret Santa gift exchange platform. Here's
           where the magic of anonymous gift-giving comes to life!
         </p>
-        
+
         <p>Here's an example of how both your csv files should look like:</p>
         <div className="flex justify-between">
-          <img className="rounded-md" src={csv_img_1} width="315px" alt="csv example img 1"/>
-          <img className="rounded-md" src={csv_img_2} width="515px" alt="csv example img 2"/>
+          <img
+            className="rounded-md"
+            src={csv_img_1}
+            width="315px"
+            alt="csv example img 1"
+          />
+          <img
+            className="rounded-md"
+            src={csv_img_2}
+            width="515px"
+            alt="csv example img 2"
+          />
         </div>
 
         <p className="text-center bg-blue-400 font-semibold rounded-md p-2 text-white">
-          Using the below buttons, provide the below 2 csv files & find your secret santa🎅. Your csv
-          file will be downloaded with the secret santa data for the current
-          year.
+          Using the below buttons, provide the below 2 csv files & find your
+          secret santa🎅. Your csv file will be downloaded with the secret santa
+          data for the current year.
         </p>
       </div>
 
       <div className="flex mt-5 mb-5">
-        <label htmlFor="currentYearCsvfile" className="hover:text-blue-500 cursor-pointer">
+        <label
+          htmlFor="currentYearCsvfile"
+          className="hover:text-blue-500 hover:scale-110 cursor-pointer "
+        >
           <b>Browse Current Year CSV File: </b>
         </label>
         <input
@@ -122,7 +137,7 @@ const Home = () => {
       <div className="flex mt-5 mb-5">
         <label
           htmlFor="previousYearSecretSantasCsvfile"
-          className="hover:text-blue-500 cursor-pointer"
+          className="hover:text-blue-500 hover:scale-110 cursor-pointer"
         >
           <b>Browse Previous Year Secret Santas CSV File: </b>
         </label>
@@ -149,8 +164,6 @@ const Home = () => {
         </button>
         {isLoading && <div>loading...</div>}
       </div>
-
-      {message.trim().length > 0 && <div>{message}</div>}
     </div>
   );
 };

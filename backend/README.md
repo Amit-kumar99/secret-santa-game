@@ -6,6 +6,9 @@
 - multer
 - cors
 
+## Tools
+- git
+
 # The backend has 2 Api's:
 
 ## 1. api/v1/files/findSecretSanta Api
