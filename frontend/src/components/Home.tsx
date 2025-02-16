@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import csv_img_1 from "../assets/csv_img1.png";
 import csv_img_2 from "../assets/csv_img2.png";
 
 const Home = () => {
+  const currentYearEmployeesfileInputRef = useRef<HTMLInputElement>(null);
+  const previousYearSecretSantafileInputRef = useRef<HTMLInputElement>(null);
   const [currentYearEmployeesfile, setCurrentYearEmployeesfile] = useState<
     File | undefined
   >();
@@ -12,10 +14,22 @@ const Home = () => {
 
   const handleCurrentYearEmployeesfile = (e) => {
     setCurrentYearEmployeesfile(e.target.files[0]);
+
+    // Clear the file input field to allow selecting the same file again.
+    // Without this, selecting the same file twice in a row won't trigger the onChange event.
+    if (currentYearEmployeesfileInputRef.current) {
+      currentYearEmployeesfileInputRef.current.value = "";
+    }
   };
 
   const handlePreviousYearSecretSantafile = (e) => {
     setPreviousYearSecretSantafile(e.target.files[0]);
+
+    // Clear the file input field to allow selecting the same file again.
+    // Without this, selecting the same file twice in a row won't trigger the onChange event.
+    if (previousYearSecretSantafileInputRef.current) {
+      previousYearSecretSantafileInputRef.current.value = "";
+    }
   };
 
   const findSecretSanta = async (e) => {
@@ -116,11 +130,12 @@ const Home = () => {
       <div className="flex mt-5 mb-5">
         <label
           htmlFor="currentYearCsvfile"
-          className="hover:text-blue-500 hover:scale-110 cursor-pointer "
+          className="hover:text-green-800 hover:scale-110 cursor-pointer "
         >
           <b>Browse Current Year CSV File: </b>
         </label>
         <input
+          ref={currentYearEmployeesfileInputRef}
           className="hidden"
           type="file"
           accept=".csv"
@@ -137,11 +152,12 @@ const Home = () => {
       <div className="flex mt-5 mb-5">
         <label
           htmlFor="previousYearSecretSantasCsvfile"
-          className="hover:text-blue-500 hover:scale-110 cursor-pointer"
+          className="hover:text-green-800 hover:scale-110 cursor-pointer"
         >
           <b>Browse Previous Year Secret Santas CSV File: </b>
         </label>
         <input
+          ref={previousYearSecretSantafileInputRef}
           className="hidden"
           type="file"
           accept=".csv"
